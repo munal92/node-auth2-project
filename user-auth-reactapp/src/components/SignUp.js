@@ -14,16 +14,18 @@ const SignUp = () => {
   });
   const history = useHistory();
   const [show, setShow] = useState(true);
-
+  const [vibrate, setVibrate] = useState({
+    clsName: "",
+  });
   const handleClose = () => {
     setShow(false);
     history.push("/login");
   };
-  //const handleShow = () => setShow(true);
+  
 
   const handleChange = (e) => {
     e.persist();
-    //  console.log("targetName", e.target.value);
+    
 
     setregisterForm({
       ...registerForm,
@@ -36,23 +38,27 @@ const SignUp = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-
+    if (
+      registerForm.credientials.username !== "" &&
+      registerForm.credientials.password !== ""
+    ) {
     axiosWithAuth()
       .post("/api/auth/register", registerForm.credientials)
       .then((res) => {
-        //  window.localStorage.setItem('token', res.data.token)
-        // props.setIsLogin(true)
         history.push("/login");
-        //console.log("Signup API", res);
-      })
-      .catch((err) => console.log(err));
+      }).catch((err) => console.log(err));
+    } else {
+      setVibrate({ clsName: "error" });
+
+      setTimeout(() => {
+        setVibrate({ clsName: "" });
+      }, 1000);
+    }
   };
- // console.log("Signupstate", registerForm);
+ 
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button> */}
+      
 
       <Modal
         show={show}
@@ -65,7 +71,7 @@ const SignUp = () => {
         </Modal.Header>
         <Modal.Body>
           <Container className="d-flex justify-content-center">
-            <Form onSubmit={submitForm}>
+            <Form onSubmit={submitForm} className={vibrate.clsName}>
               <Row>
                 <Col className="text-center py-3">
                   <h2>Welcome!</h2>

@@ -14,7 +14,6 @@ const UserPage = () => {
     axiosWithAuth()
       .get("/api/department")
       .then((res) => {
-        //  console.log("userPageAPI", res.data)
         setUserData(res.data);
       })
       .catch((err) => {
@@ -28,19 +27,20 @@ const UserPage = () => {
         <Row className="justify-content-md-center">
           <Col className="col-lg-4 text-center py-4 ">
             {/* <h2 className="badge-info text-wrap " > */}
-            <h2  >
-              - Colleagues List -
-            </h2>
+            <h2>- Colleagues List -</h2>
           </Col>
         </Row>
 
         <div className="container d-flex flex-row flex-wrap">
           {userData.map((item, index) => (
             <Col sm={12} lg={4} className="pt-1" key={index}>
-              <ListGroup >
-                <ListGroup.Item className="mb-1 font-weight-bold shadow p-3 mb-5 bg-white rounded" key={index}>
+              <ListGroup>
+                <ListGroup.Item
+                  className="mb-1 font-weight-bold shadow p-3 mb-5 bg-white rounded"
+                  key={index}
+                >
                   {index + 1}. {item.username}
-                  <small style={{backgroundColor:"white"}}>
+                  <small style={{ backgroundColor: "white" }}>
                     <br />
                     Department: {item.department}
                   </small>
