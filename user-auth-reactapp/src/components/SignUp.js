@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Button, Row, Col, Modal } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { Redirect, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 
 const SignUp = () => {
   const [registerForm, setregisterForm] = useState({
@@ -19,7 +19,7 @@ const SignUp = () => {
     setShow(false);
     history.push("/login");
   };
-  const handleShow = () => setShow(true);
+  //const handleShow = () => setShow(true);
 
   const handleChange = (e) => {
     e.persist();

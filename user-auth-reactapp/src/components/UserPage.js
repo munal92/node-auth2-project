@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { Container, Row, Col } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
-import { Switch, Route, Redirect } from "react-router-dom";
+
 const UserPage = () => {
   const [userData, setUserData] = useState([{}]);
 
@@ -26,18 +26,19 @@ const UserPage = () => {
     <section className="UserListSec">
       <Container>
         <Row className="justify-content-md-center">
-          <Col className="col-lg-2 text-center pt-2 ">
-            <h2 className="badge-info text-wrap " >
-              User List
+          <Col className="col-lg-4 text-center py-4 ">
+            {/* <h2 className="badge-info text-wrap " > */}
+            <h2  >
+              - Colleagues List -
             </h2>
           </Col>
         </Row>
 
         <div className="container d-flex flex-row flex-wrap">
           {userData.map((item, index) => (
-            <Col sm={12} lg={4} className="pt-3" key={index}>
-              <ListGroup>
-                <ListGroup.Item className="mb-1 font-weight-bold" key={index}>
+            <Col sm={12} lg={4} className="pt-1" key={index}>
+              <ListGroup >
+                <ListGroup.Item className="mb-1 font-weight-bold shadow p-3 mb-5 bg-white rounded" key={index}>
                   {index + 1}. {item.username}
                   <small style={{backgroundColor:"white"}}>
                     <br />

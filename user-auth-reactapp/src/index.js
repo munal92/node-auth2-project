@@ -4,18 +4,14 @@ import './scss/index.scss';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
+import {  BrowserRouter as Router} from "react-router-dom";
+import {ContextApi} from "./components/ContextApi"
 ReactDOM.render(
- 
+  <ContextApi>
     <Router>
     <App />
     </Router>
+    </ContextApi>
   ,
   document.getElementById('root')
 );

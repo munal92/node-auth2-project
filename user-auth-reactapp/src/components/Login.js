@@ -3,10 +3,12 @@ import { Container, Button, Row, Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { useHistory, Link, Route } from "react-router-dom";
+//import {LogInContext} from "./ContextApi"
 
 import SignUp from "./SignUp";
 
 const Login = (props) => {
+  
   const history = useHistory();
 
   const [loginForm, setLoginForm] = useState({
@@ -17,6 +19,11 @@ const Login = (props) => {
     isChecked: false,
   });
 
+  const [vibrate, setVibrate] = useState({
+    clsName: "",
+  });
+
+ 
   const handleChange = (e) => {
     e.persist();
     // console.log("targetName", e.target.name);
@@ -38,24 +45,45 @@ const Login = (props) => {
 
   const submitForm = (e) => {
     e.preventDefault();
+if(loginForm.credientials.username !== "" && loginForm.credientials.password !== "" ){
+  axiosWithAuth()
+  .post("/api/auth/login", loginForm.credientials)
+  .then((res) => {
+   
+    window.localStorage.setItem("token", res.data.token);
+    if(loginForm.isChecked){
+      window.localStorage.setItem("StayLogIN",true)
+      
+    }else{
+      window.localStorage.setItem("StayLogIN",false)
+      
+    
+    }
+    history.push("/");
 
-    axiosWithAuth()
-      .post("/api/auth/login", loginForm.credientials)
-      .then((res) => {
-        window.localStorage.setItem("token", res.data.token);
-        // props.setIsLogin(true)
-        history.push("/");
-        //console.log("API", res);
-      })
-      .catch((err) => console.log(err));
+    //console.log("API", res);
+  }).catch((err) => console.log(err));
+}else{
+  setVibrate({ clsName: "error" });
+
+      setTimeout(() => {
+        setVibrate({ clsName: "" });
+        
+      }, 1000);
+    }
+
+    
   };
 
-  // console.log("state", loginForm);
+   console.log("logindeki state", loginForm.isChecked);
+
+  //const [isLoggedIn , setIsLoggedIn ] = React.useContext(LogInContext);
+//console.log(isLoggedIn)
 
   return (
     <section className="loginSec">
       <Container className="d-flex justify-content-center">
-        <Form onSubmit={submitForm}>
+        <Form onSubmit={submitForm}  className={vibrate.clsName} >
           <Row>
             <Col className="text-center py-3">
               <h2>Welcome!</h2>
