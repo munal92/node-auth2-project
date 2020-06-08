@@ -38,6 +38,7 @@ router.post("/login", (req, res) => {
         if (userInfo && bcryptjs.compareSync(userInfo.password, u.password) || userInfo.password === u.password) {
 //console.log("u",u , "\nuserInfo", userInfo)
           const token = generateToken(u);
+          console.log(process.env.JWT_SECRET)
           res.status(200).json({ message: "Login Successful", token });
         } else {
           res.status(401).json({ message: "Invalid credentials" });
