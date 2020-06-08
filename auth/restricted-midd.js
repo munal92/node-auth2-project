@@ -10,7 +10,7 @@ function checkJWT(req, res, next) {
         res.status(401).json({ errorMessage: "provided token couldn't find" });
       } else {
         req.decodedJwt = decodedToken;
-
+        // console.log(req.decodedJwt.department)
         next();
       }
     });
