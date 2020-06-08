@@ -26,8 +26,8 @@ const UserPage = () => {
     <section className="UserListSec">
       <Container>
         <Row className="justify-content-md-center">
-          <Col className="col-lg-2 text-center pt-5  ">
-            <h2 className="badge-info text-wrap " style={{ color: "white" }}>
+          <Col className="col-lg-2 text-center pt-2 ">
+            <h2 className="badge-info text-wrap " >
               User List
             </h2>
           </Col>
@@ -39,7 +39,7 @@ const UserPage = () => {
               <ListGroup>
                 <ListGroup.Item className="mb-1 font-weight-bold" key={index}>
                   {index + 1}. {item.username}
-                  <small>
+                  <small style={{backgroundColor:"white"}}>
                     <br />
                     Department: {item.department}
                   </small>

@@ -3,18 +3,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
+}
+body{
+    background: lighten($color: gray, $amount: 45) !important;
 }
 
 .loginSec{
     
     display: flex;
     align-items: center;
-    min-height: 100vh;
-    background: lighten($color: gray, $amount: 45);
-    padding-bottom: 7rem;
+    min-height: 88vh;
+   
+    padding-bottom: 6rem;
 }
 .UserListSec{
     display: flex; 
-    background: lighten($color: gray, $amount: 45);
-    min-height: 100vh;
+    min-height: 100%;
+    padding-bottom: 5rem;
 }

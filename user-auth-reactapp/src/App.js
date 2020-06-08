@@ -6,6 +6,7 @@ import UserPage from './components/UserPage';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
 import SignUp from './components/SignUp';
+import NavBar from './components/NavBar';
 
 
 
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <>
+    <NavBar/>
      <Switch>
      
      <Route path="/login" component={Login} />   
